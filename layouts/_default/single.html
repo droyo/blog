@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    {{ partial "head.html" . }}
+    <body>
+        <div id="main-copy">
+            <h1>{{ .Title }}</h1>
+            {{ .Content }}
+        
+
+        <ul class="toc">
+            <li class="toc-head"><strong>Related posts</strong></li>
+
+{{ $page_link := .Permalink }}
+{{ $tags := .Params.tags }}
+{{ range .Site.Pages }}
+  {{ $has_common_tags := intersect $tags .Params.tags | len | lt 0 }}
+  {{ if and $has_common_tags (ne $page_link .Permalink) }}
+    {{.Render "li"}}
+  {{ end }}
+{{ end }}
+        </ul>
+        </div>
+    </body>
+</html>

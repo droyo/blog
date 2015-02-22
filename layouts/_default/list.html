@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    {{ partial "head.html" . }}
+    <body>
+        <div id="main-copy">
+            <ul class="toc">
+                <li class="toc-header"><span class="toc-title">{{ .Title }}</span>
+                    <span class="toc-subtitle">{{ .Params.subtitle }}</span></li>
+    
+                <li class="toc-head"><strong>Recent posts</strong></li>
+                {{ range .Data.Pages.ByDate }}
+                {{ .Render "li" }}
+                {{ end }}
+            </ul>
+        </div>
+    </body>
+</html>
+
