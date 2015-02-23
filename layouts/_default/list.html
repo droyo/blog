@@ -8,7 +8,7 @@
                     <span class="toc-subtitle">{{ .Params.subtitle }}</span></li>
     
                 <li class="toc-head"><strong>Recent posts</strong></li>
-                {{ range .Data.Pages.ByDate }}
+                {{ range .Data.Pages.ByDate.Reverse }}
                 {{ .Render "li" }}
                 {{ end }}
             </ul>
