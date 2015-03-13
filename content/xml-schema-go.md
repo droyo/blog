@@ -1,5 +1,5 @@
 +++
-date = "2015-02-22T21:31:15-05:00"
+date = "2015-03-12T21:31:15-05:00"
 title = "XML Schema and Go"
 description = "Generating Go source from XML schema"
 tags = ["xml", "go", "soap"]
