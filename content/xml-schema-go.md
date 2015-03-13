@@ -134,10 +134,14 @@ Running "go generate" produces the file "xsdgen_output.go":
 
 I can replace ugly names by modifying my xsdgen command:
 
-	//go:generate xsdgen -ns http://example.com/ -r "WS(.*) -> $1" -r "ArrayOf_soapenc_string -> Strings" -pkg ipam schema.xml
+	//go:generate xsdgen -ns http://example.com/ -r "^WS -> " -r "ArrayOf_soapenc_string -> Strings" -pkg ipam schema.xml
 
-Will produce types named `Device`, `Strings`, `Interface`. The
-xsdgen package respects xml namespaces and inheritance; it knows
+Will produce types named `Device`, `Strings`, `Interface`. Note
+that while the replacement supports regular expressions and
+subexpression substitution, the "go generate" command clobbers
+subexpression references such as `$1`.
+
+The xsdgen package respects xml namespaces and inheritance; it knows
 that a `soapenc:string` is derived from an `xsd:string`, for instance.
 Rather than preserving this hierarchy in the generated Go source,
 the xsdgen package "squashes" all inheritence, and tries to minimize
