@@ -184,10 +184,10 @@ ignore it. The file contains something like this:
 		}
 	}
 
-The full set of Options available can be found in the documentation for
-the [xsdgen package][2]. Some Options are pretty advanced, and give
-provide a shim for manipulating types and Go syntax trees with arbitrary
-code. Once this file is created, update the `gen.go` file:
+The full set of Options available can be found in the documentation
+for the [xsdgen package][2]. Some Options are pretty advanced,
+providing a shim for manipulating types and Go syntax trees with
+arbitrary code. Once this file is created, update the `gen.go` file:
 
 	//go:generate go run _gencfg/cfg.go -ns http://example.com/ -r "^WS ->" -r "ArrayOfsoapencstring -> Strings" -pkg ipam schema.xml
 
@@ -228,3 +228,4 @@ The code for the `xsdgen` and related packages is on [github][5].
 [2]: http://aqwari.net/xml/xsdgen/
 [3]: http://blog.golang.org/generate
 [4]: http://aqwari.net/xml/cmd/xsdgen/
+[5]: http://github.com/droyo/go-xml/
