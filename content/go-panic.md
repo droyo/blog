@@ -1,6 +1,5 @@
 +++
 date = "2015-02-22T21:31:35-05:00"
-draft = true
 title = "Don't be afraid to panic"
 description = "Using panic and recover for clearer code"
 tags = ["go", "programming"]
