@@ -128,8 +128,8 @@ This works because in this use case, all errors are handled in the
 same way, and because recursion is heavily used while parsing due
 to the deep nesting present in XML schema documents. Because all
 of the parsing functions went from returning a result and an error,
-to returning a single result, *the functions became much more
-composable*, almost like commands in a unix pipeline. Compare:
+to returning a single result, the functions became much more
+composable, almost like commands in a unix pipeline. Compare:
 
 	// With explicit error returns
 	elem, err := parseElement(root)
