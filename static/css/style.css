@@ -1,3 +1,7 @@
+body{margin:40px
+auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0
+10px}h1,h2,h3{line-height:1.2}
+
 .header {
   height: 1.25em;
   background-color: #dff;
@@ -66,12 +70,11 @@
   padding-top: 0.25em;
 }
 pre {
-  margin-left: 4em;
-  margin-right: 4em;
-}
-pre, code {
-  font-family: 'Inconsolata', monospace;
-  font-size: 100%;
+  font-size: 90%;
+  overflow: scroll;
+  background-color: #eee;
+  padding: 5px;
+  border-radius: 10px;
 }
 .footer {
   margin-top: 10px;
