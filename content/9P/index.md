@@ -179,7 +179,6 @@ by running `go test` every time a file changes. I have patched Russ Cox's
 tool runs a command, such as `go test`, in an acme window every time a
 directory changes.
 
-In a previous post I showed how to record protocol data for future testing.
 I have stored some protocol data from an example 9P session in the
 `testdata` directory. The `sample.client.9p` file contains sample messages
 coming from the client to the server, and the `sample.server.9p` file contains
