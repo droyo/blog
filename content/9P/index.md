@@ -162,7 +162,7 @@ coding!  I have decided on a namespace and separation for my Go packages:
 
 - `aqwari.net/net/styx` - high-level Client/Server package
 - `aqwari.net/net/styx/styxproto` - low-level protocol package
-- `aqwari.net/cmd/nagiosfs` - example file server
+- `aqwari.net/cmd/graphitefs` - example file server
 
 I chose the name "styx" because `9p` is not a valid identifier in Go.
 The styx protocol and 9P2000 are identical.
