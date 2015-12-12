@@ -33,7 +33,7 @@ project. I will be writing the server in Go, which I find to be ideal for
 writing network services. To set expectations, this series is not about
 Go, it is about network protocols and the design of network services.
 
-While don't hold any illusions about writing better code than what
+While I don't hold any illusions about writing better code than what
 is currently available, I would like to produce something that others
 would consider using.  It is my hope that with the right API and a sound
 implementation, I can increase the attractiveness of using 9P when it
@@ -50,10 +50,10 @@ I have three goals for this project:
 
 # Example server - `graphitefs`
 
-For the example server, I will produce a file server UI for graphite,
-the popular metrics collection. If you are not familiar with graphite,
-it composed of a metrics collection service and an HTTP API for rendering
-graphs. Services send newline-delimited metrics, such as
+For the example server, I will produce a file server UI for graphite, the
+popular metrics collection framework. If you are not familiar with graphite, it
+is composed of a metrics collection service and an HTTP API for rendering graphs.
+Services send newline-delimited metrics, such as
 
 	servers.myhost.network.eth0.rx_bit 982372 1443235316
 
@@ -85,8 +85,8 @@ protocol, of which 9P2000 is the latest. To keep it short and sweet,
 
 - 9P was the original protocol released with Plan 9
 - Styx was an extension of 9P, introduced with the Inferno operating system
-- Most of the Styx changes were rolled into 9P2000 with the 4th edition of Plan
-  9. Inferno was updated to use 9P2000. All modern systems use the 9P2000
+- Most of the Styx changes were rolled into 9P2000 with the 4th edition of
+  Plan 9. Inferno was updated to use 9P2000. All modern systems use the 9P2000
   protocol, and the name "styx" now refers to 9P2000.
 
 See [9p.cat-v.org/faq](http://9p.cat-v.org/faq) for more details.
