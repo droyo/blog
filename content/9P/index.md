@@ -202,11 +202,11 @@ the tests. This API will change over time as we learn more.
 		testParseMsgFile(t, "testdata/sample.server.9p")
 	}
 
-So far so good. Now we make our first stab at what the overall package
-is going to look like. When working with streaming data, I prefer an API
-like the `bufio` package's `Scanner` type; a boolean function fetches the
-next message and returns `true` unless an error was encountered. This
-makes for a nice, compact `for` loop to read all the messages in a buffer.
+So far so good. Now we make our first stab at what the overall package is going
+to look like. When working with streaming data, I prefer an API like the
+`bufio` package's `Scanner` type; a boolean function fetches the next message
+and returns `true` unless an error was encountered. This makes for a nice,
+compact `for` loop to read all the messages in a buffer.
 
 	func testParseMsg(t *testing.T, r io.Reader) {
 		p := newParser(r)
@@ -226,27 +226,25 @@ Currently the tests will start failing with this error message:
 	FAIL	aqwari.net/net/styx/styxproto [build failed]
 	go test: exit status 2
 
-Let's try implementing newParser. All 9P messages start with
-the following 7 bytes:
+Let's try implementing newParser. All 9P messages start with the following 7
+bytes:
 
 	size[4] type[1] tag[2]
 
-The size is a 32-bit little endian integer that is the size, in bytes,
-of the message, including the 4 bytes of the size itself. The type
-is the type of message. In the basic 9P2000 protocol, there are
-28 message types, two for each operation. The 9P2000.u extensions
-add a few more messages, and the 9P2000.L extensions add even
-more.
+The size is a 32-bit little endian integer that is the size, in bytes, of the
+message, including the 4 bytes of the size itself. The type is the type of
+message. In the basic 9P2000 protocol, there are 28 message types, two for each
+operation. The 9P2000.u extensions add a few more messages, and the 9P2000.L
+extensions add even more.
 
-For now, let's just try parsing the type of a message. We need to
-define a `Parser` type for `NewParser` to return, plus a `message`
-type for the parser's `message` method to return. The layout of
-the Parser struct is bound to change in the future; whether or not
-we use an internal buffer, how big that buffer should be, etc.
-Ideally, I would like to have all messages live adjacent to one
-another in a single byte slice, but managing that slice might prove
-too complex. For now, we'll give each Parser an internal buffer, and
-maintain enough space for at least one message it.
+For now, let's just try parsing the type of a message. We need to define a
+`Parser` type for `NewParser` to return, plus a `message` type for the parser's
+`message` method to return. The layout of the Parser struct is bound to change
+in the future; whether or not we use an internal buffer, how big that buffer
+should be, etc.  Ideally, I would like to have all messages live adjacent to
+one another in a single byte slice, but managing that slice might prove too
+complex. For now, we'll give each Parser an internal buffer, and maintain
+enough space for at least one message it.
 
 	type Parser struct {
 		buf *bytes.Buffer
@@ -282,11 +280,10 @@ maintain enough space for at least one message it.
 		return p.err
 	}
 
-Here are the helper methods `copyMsg` and `parseMsg`,
-which read a single message from a stream and validate
-a single message, respectively. `parseMsg` will be a much
-more robust function in the future. Currently it just checks
-that the message has space for a type and a tag.
+Here are the helper methods `copyMsg` and `parseMsg`, which read a single
+message from a stream and validate a single message, respectively. `parseMsg`
+will be much more robust function in the future. Currently it just checks that
+the message has space for a type and a tag.
 
 	// copyMsg does *not* copy the first four bytes
 	// into dst
@@ -310,8 +307,7 @@ that the message has space for a type and a tag.
 		return Message(msg), nil
 	}
 
-Finally, we'll make Message a Stringer so we get readable
-output from our test:
+Finally, we'll make Message a Stringer so we get readable output from our test:
 
 	func (msg Message) String() string {
 		mtype := msg[0]
@@ -336,14 +332,14 @@ After that, our tests start passing! Woohoo!
 		styxproto_test.go:30: tag 0000 type 107 |..No such file o|
 		...
 
-One thing you notice right away is that aside from the first version
-message, which uses NOTAG (0xFFFF) as its tag, all the messages
-have the same tag! The 9P protocol requires that for any given
-connection, tags for all *pending* requests must be unique. In
-the traffic we've recorded, each request finishes before the next
-one starts. The most likely cause for this is that we're making
-the requests over the local network device. Over high latency
-connections, the number of pending requests will go up.
+One thing you notice right away is that aside from the first version message,
+which uses NOTAG (0xFFFF) as its tag, all the messages have the same tag! The
+9P protocol requires that for any given connection, tags for all *pending*
+transactions must be unique. In the traffic we've recorded, each request
+finishes before the next one starts. The most likely cause for this is that
+we're making the requests over the local network device, and they are all
+coming from a single user. Over high latency connections, the number of pending
+requests will go up.
 
-In my next post, I will implement both the low-level protocol
-package and a high-level package for making servers and clients.
+In my next post, I will implement both the low-level protocol package and a
+high-level package for making servers and clients.
