@@ -177,7 +177,11 @@ times of the main implementation to setup a satisfactory feedback loop,
 by running `go test` every time a file changes. I have patched Russ Cox's
 `Watch` command to run on Linux, and renamed it to `acmewatch`. This
 tool runs a command, such as `go test`, in an acme window every time a
-directory changes.
+file in the working directory changes. It looks like this:
+
+<a href="/img/9p-acmego.png">
+<img src="/img/9p-acmego.thumb.png" style="width: 100%" />
+</a>
 
 I have stored some protocol data from an example 9P session in the
 `testdata` directory. The `sample.client.9p` file contains sample messages
