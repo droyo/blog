@@ -9,7 +9,7 @@
     
                 <li class="toc-head"><strong>Recent posts</strong></li>
                 {{ range .Data.Pages.ByDate.Reverse }}
-                {{ .Render "li" }}
+                {{if .Params.hidden}}{{else}}{{ .Render "li" }}{{end}}
                 {{ end }}
             </ul>
         </div>
