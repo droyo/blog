@@ -67,3 +67,8 @@ Miscellaneous bookmarks that I've collected over the years.
 [FLIF](http://flif.info/) -- good image format
 
 [Deep Gate Recurrent Neural Network](http://arxiv.org/abs/1604.02910v3)
+
+[predicate indexing for incremental multi-query optimization](https://www.cs.cmu.edu/~jgc/publication/PublicationPDF/Predicate_Indexing_For_Incremental_Multi-Query_Optimization.pdf)
+
+[Bazel build system](http://www.bazel.io/)
+
