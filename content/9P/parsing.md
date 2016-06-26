@@ -128,15 +128,15 @@ a reminder:
 
 The pale yellow fields are variable length. By imposing reasonable
 maximum sizes on file names, user names, and the other variable-length
-fields, we can come up. See the [limits.go][2] file for the limits imposed on
-various fields. With the limits chosen, the largest message (excluding
-`Twrite` and `Rread`) is `Twalk`, because it can include up to 16
-file names of variable width. Thus, at the very minimum, our buffer must
-be at least
+fields, we can come up with a minimum buffer size. See the [limits.go][2]
+file for the limits imposed on various fields. With the limits chosen,
+the largest message (excluding `Twrite` and `Rread`) is `Twalk`, because
+it can include up to 16 file names of variable width. Thus, at the very
+minimum, our buffer must be at least
 
 	const MinBufSize = MaxWElem*(MaxFilenameLen+2) + 13 + 4
 
-`MinBufSize` bytes long. We add 2 to `MaxFilenameLen to account
+`MinBufSize` bytes long. We add 2 to `MaxFilenameLen` to account
 for the 2-byte length preceding variable-length strings. We add 13 to
 the product to account for the preceding fixed-width fields. And we add
 4 to that to account for the `size` field.
@@ -184,7 +184,7 @@ value can be used anywhere a byte stream can be used. For example:
 Using a streaming API for potentially large data fields gives us the freedom
 to create an implementation that does not incur unexpected resource usage.
 
-# Decoders
+# The Decoder
 
 Following the example set by packages like `encoding/xml` and
 `encoding/json`, we define a [Decoder][4], which wraps a connection
@@ -248,11 +248,14 @@ benefit from more rigor.
 The construction of `Twrite` and `Rread` messages during parsing
 is worth repeating here:
 
-		// dot contains the currently read bytes for this message, up to size
+		// dot contains the currently read bytes for
+		// this message, up to size
 		m := Twrite{msg: dot}
 		
-		// even though we may not have read the whole message, because
-		// of the representation we've chosen, we can still call methods on it
+		// even though we may not have read the
+		// whole message, because of the
+		// representation we've chosen, we can
+		// still call methods on it.
 		count := m.Count()
 		
 		buffered := dot[23:] 
@@ -282,8 +285,8 @@ place to put methods that create messages from higher-level parameters.
 		ew *util.ErrWriter
 	}
 
-The `[wire.TxWriter][7]` isolates concurrent writes to an `io.Writer`.
-The `[util.ErrWriter][8]` captures errors occured during writing
+The [wire.TxWriter][7] isolates concurrent writes to an `io.Writer`.
+The [util.ErrWriter][8] captures errors occured during writing
 (see [errors are values][9]). Here is an example method that writes
 an Rauth message to an underlying connection (some functions ellided).
 
