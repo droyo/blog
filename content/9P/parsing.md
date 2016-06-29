@@ -3,7 +3,6 @@ date = "2015-09-29T12:00:00-05:00"
 title = "Writing a 9P server from scratch: Protocol parsing"
 tags = ["9p"]
 description = "Decoding the 9P message format"
-draft = true
 +++
 
 In the previous post, we began work on the protocol parser, getting
