@@ -75,3 +75,7 @@ Miscellaneous bookmarks that I've collected over the years.
 [Resources for Amateur Compiler Writers](http://c9x.me/compile/bib/)
 
 [http://xkcd.com/1537/][]
+
+[edit](http://c9x.me/edit/) - text editor that is a blend of vi and acme
+
+[The de editor](https://github.com/driusan/de) - like the above
