@@ -73,3 +73,5 @@ Miscellaneous bookmarks that I've collected over the years.
 [Bazel build system](http://www.bazel.io/)
 
 [Resources for Amateur Compiler Writers](http://c9x.me/compile/bib/)
+
+[http://xkcd.com/1537/][]
