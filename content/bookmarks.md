@@ -79,3 +79,5 @@ Miscellaneous bookmarks that I've collected over the years.
 [edit](http://c9x.me/edit/) - text editor that is a blend of vi and acme
 
 [The de editor](https://github.com/driusan/de) - like the above
+
+[T](https://github.com/eaburns/T) - another interting text editor
