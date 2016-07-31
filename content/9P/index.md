@@ -345,5 +345,5 @@ we're making the requests over the local network device, and they are all
 coming from a single user. Over high latency connections, the number of pending
 requests will go up.
 
-In my next post, I will implement both the low-level protocol package and a
+In my [next post](parsing), I will implement both the low-level protocol package and a
 high-level package for making servers and clients.
