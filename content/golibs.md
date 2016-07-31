@@ -31,8 +31,11 @@ found, etc. Nothing is infallible, etc etc. Vendor your dependencies.
 ## List of libraries
 
 All of the packages below are in the aqwari.net namespace, for
-example, `aqwari.net/io/tailpipe`
+example, importing the `io/tailpipe` package would look like this:
 
+	import "aqwari.net/io/tailpipe"
+
+These import paths are served up by the [gogive](https://github.com/droyo/gogive) command.
 <dl>
 <dt><a href="https://aqwari.net/exp/ndb">exp/ndb</a></dt>
 <dd>Parser for the <a href="https://swtch.com/plan9port/man/man7/ndb.html">ndb</a> file format.</dd>
