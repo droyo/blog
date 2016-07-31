@@ -28,6 +28,32 @@ here. If you are shipping a critical production application, the
 usual disclaimers apply – this site may go down, major bug may be
 found, etc. Nothing is infallible, etc etc. Vendor your dependencies.
 
+## List of libraries
+
+All of the packages below are in the aqwari.net namespace, for
+example, `aqwari.net/io/tailpipe`
+
+<dl>
+<dt>[exp/ndb](https://aqwari.net/exp/ndb)</dt>
+<dd>Parser for the [ndb][1] file format.</dd>
+<dt>[exp/soap](https://aqwari.net/exp/soap)</dt>
+<dd>Helper functions for dealing with SOAP envelopes.</dd>
+<dt>[exp/display](https://aqwari.net/exp/display)</dt>
+<dd>Package for setting up an OpenGL window. Uses SDL2 on Linux, GLUT on OSX.</dd>
+<dt>[exp/gl](https://aqwari.net/exp/gl</dt>
+<dd>OpenGL bindings.</dd>
+<dt>[xml/xmltree](https://aqwari.net/xml)</dt>
+<dd>Manipulate an XML document as a tree. Supports xml namespace resolution at arbitrary points within the tree.</dd>
+<dt>[retry](https://aqwari.net/retry</dt>
+<dd>Exponential backoff and other retry policies.</dd>
+<dt>[net/styx](https://aqwari.net/net/styx)</dt>
+<dd>[9P2000][2] network filesystem protocol, client/server implementation.</dd>
+<dt>[io/tailpipe](https://aqwari.net/io/tailpipe)</dt>
+<dd>Pure-go implementation of `tail -F` (that's a capital F)</dd>
+</dl>
+
+[1]: https://swtch.com/plan9port/man/man7/ndb.html
+[2]: https://en.wikipedia.org/wiki/9P_(protocol)
 ## Contributing
 
 The code repositories for aqwari.net packages are hosted on github.
