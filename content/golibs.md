@@ -43,11 +43,11 @@ These import paths are served up by the [gogive](https://github.com/droyo/gogive
 <dd>Helper functions for dealing with SOAP envelopes.</dd>
 <dt><a href="https://aqwari.net/exp/display">exp/display</a></dt>
 <dd>Package for setting up an OpenGL window. Uses SDL2 on Linux, GLUT on OSX.</dd>
-<dt>[exp/gl](https://aqwari.net/exp/gl</dt>
+<dt><a href="https://aqwari.net/exp/gl">exp/gl</a></dt>
 <dd>OpenGL bindings.</dd>
 <dt><a href="https://aqwari.net/xml">xml/xmltree</a></dt>
 <dd>Manipulate an XML document as a tree. Supports xml namespace resolution at arbitrary points within the tree.</dd>
-<dt>[retry](https://aqwari.net/retry</dt>
+<dt><a href="https://aqwari.net/retry">retry</a></dt>
 <dd>Exponential backoff and other retry policies.</dd>
 <dt><a href="https://aqwari.net/net/styx">net/styx</a></dt>
 <dd><a href="https://en.wikipedia.org/wiki/9P_(protocol)">9P2000</a> network filesystem protocol, client/server implementation.</dd>
