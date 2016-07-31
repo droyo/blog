@@ -34,26 +34,24 @@ All of the packages below are in the aqwari.net namespace, for
 example, `aqwari.net/io/tailpipe`
 
 <dl>
-<dt>[exp/ndb](https://aqwari.net/exp/ndb)</dt>
-<dd>Parser for the [ndb][1] file format.</dd>
-<dt>[exp/soap](https://aqwari.net/exp/soap)</dt>
+<dt><a href="https://aqwari.net/exp/ndb">exp/ndb</a></dt>
+<dd>Parser for the <a href="https://swtch.com/plan9port/man/man7/ndb.html">ndb</a> file format.</dd>
+<dt><a href="https://aqwari.net/exp/soap">exp/soap</a></dt>
 <dd>Helper functions for dealing with SOAP envelopes.</dd>
-<dt>[exp/display](https://aqwari.net/exp/display)</dt>
+<dt><a href="https://aqwari.net/exp/display">exp/display</a></dt>
 <dd>Package for setting up an OpenGL window. Uses SDL2 on Linux, GLUT on OSX.</dd>
 <dt>[exp/gl](https://aqwari.net/exp/gl</dt>
 <dd>OpenGL bindings.</dd>
-<dt>[xml/xmltree](https://aqwari.net/xml)</dt>
+<dt><a href="https://aqwari.net/xml">xml/xmltree</a></dt>
 <dd>Manipulate an XML document as a tree. Supports xml namespace resolution at arbitrary points within the tree.</dd>
 <dt>[retry](https://aqwari.net/retry</dt>
 <dd>Exponential backoff and other retry policies.</dd>
-<dt>[net/styx](https://aqwari.net/net/styx)</dt>
-<dd>[9P2000][2] network filesystem protocol, client/server implementation.</dd>
-<dt>[io/tailpipe](https://aqwari.net/io/tailpipe)</dt>
+<dt><a href="https://aqwari.net/net/styx">net/styx</a></dt>
+<dd><a href="https://en.wikipedia.org/wiki/9P_(protocol)">9P2000</a> network filesystem protocol, client/server implementation.</dd>
+<dt><a href="https://aqwari.net/io/tailpipe">io/tailpipe</a></dt>
 <dd>Pure-go implementation of `tail -F` (that's a capital F)</dd>
 </dl>
 
-[1]: https://swtch.com/plan9port/man/man7/ndb.html
-[2]: https://en.wikipedia.org/wiki/9P_(protocol)
 ## Contributing
 
 The code repositories for aqwari.net packages are hosted on github.
