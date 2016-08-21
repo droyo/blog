@@ -5,13 +5,13 @@ tags = ["9P"]
 description = "Walking and talking like a 9P server"
 +++
 
-In my [previous post][prev], I covered the implementation of a decoder
-and encoder for 9P messages. However, if that was all it took to implement
-a 9P server, 9P would not be a protocol; it would be a file format. In this post,
-I will cover the implementation of the [net/styx][pkg] package, which
-implements a 9P server. This is not a hypothetical package; it is used to
-implement [jsonfs][jsonfs], a 9P file server that serves a JSON-formatted
-file as a file system.
+In my [previous post][prev], I covered the implementation of a decoder and
+encoder for 9P messages. However, if that was all it took to implement a 9P
+server, 9P would not be a protocol; it would be a file format. In this post, I
+will cover the implementation of the [net/styx][pkg] package, which provides
+plumbing for writing a 9P server. This is not a hypothetical package; it is
+used to implement [jsonfs][jsonfs], a 9P file server that serves a
+JSON-formatted file as a file system.
 
 # 9P transactions
 
