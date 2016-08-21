@@ -553,7 +553,7 @@ package:
 	func Write(w io.Writer, m Msg) (written int64, err error) {
 		n, err := w.Write(m.bytes())
 		if r, ok := m.(io.Reader); ok {
-			written, err = io.Copy(w, m)
+			written, err = io.Copy(w, r)
 			return written + int64(n), err
 		}
 		return int64(n), err
