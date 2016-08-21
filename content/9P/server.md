@@ -1,6 +1,6 @@
 +++
 date = "2016-08-20T12:00:00-05:00"
-title = "Writing a 9P server from scratch: protocol concepts"
+title = "Writing a 9P server from scratch: server plumbing"
 tags = ["9P"]
 description = "Walking and talking like a 9P server"
 +++
