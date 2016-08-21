@@ -71,7 +71,7 @@ auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0
 }
 pre {
   font-size: 90%;
-  overflow: scroll;
+  overflow: auto;
   background-color: #eee;
   padding: 5px;
   border-radius: 10px;
