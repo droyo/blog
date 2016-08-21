@@ -1,7 +1,7 @@
 +++
 date = "2015-09-29T12:00:00-05:00"
 title = "Writing a 9P server from scratch: Protocol parsing"
-tags = ["9p"]
+tags = ["9P"]
 description = "Decoding the 9P message format"
 +++
 
@@ -323,7 +323,7 @@ And here is an `Rread` method:
 		return enc.Err()
 	}
 
-Note that on the encoder size, we take a `[]byte` parameter instead
+Note that on the encoder side, we take a `[]byte` parameter instead
 of an `io.Reader`. The reasoning behind this is that it makes the
 calculation of the `size` and `count` fields simpler, and if a
 program wants to send more data than it wants to hold in memory,
@@ -335,7 +335,7 @@ See the [styxproto][3] package for the full implementation of the low-level
 encoder and decoder for the 9P2000 protocol. It contains moderate tests,
 including fuzz testing (which uncovered a couple of bugs). With this package,
 we can read and write 9P messages from the network. However, it is not
-enough to just speak the protocol. In the next post, I will cover what it takes
+enough to just speak the protocol. In the [next post](../server), I will cover what it takes
 to implement a 9P server, including (but not limited to): sessions, fid management,
 authentication, protocol negotiation. We will implement the higher-level `styx`
 package that will interface with user-written servers.
