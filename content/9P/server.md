@@ -53,7 +53,7 @@ There are 3 types of identifiers in the 9P protocol.
 - **Fid**: 32-bit identifier for a file pointer, akin to Unix file
   descriptors.  Chosen by the client. **Not unique**; two fids may point
   to the same file.
-- **Qid**: 104-bit identifier for a file, similar to (but not the same as)
+- **Qid**: 104-bit identifier for a file, analogous to (but not the same as)
   an inode in a Unix filesystem. Chosen by the **server**. No two files
   may have the same Qid, even if they have the same name and one
   has been deleted.
