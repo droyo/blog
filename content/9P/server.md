@@ -290,9 +290,9 @@ Here is one way we can handle the `read` transaction
 
 		switch err {
 		case nil,io.EOF,io.ErrUnexpectedEOF:
-			s.conn.Rerror(msg.Tag(), "%s", err)
+			s.conn.Rread(msg.Tag(), buf[:n])
 		default:
-			s.conn.Rread(msg.Tag(), buf[:n]
+			s.conn.Rerror(msg.Tag(), "%s", err)
 		}
 		return true
 	}
@@ -348,9 +348,9 @@ The following lines were put together after some trial and error on my part.
 
 	switch err {
 	case nil,io.EOF,io.ErrUnexpectedEOF:
-		s.conn.Rerror(msg.Tag(), "%s", err)
+		s.conn.Rread(msg.Tag(), buf[:n])
 	default:
-		s.conn.Rread(msg.Tag(), buf[:n]
+		s.conn.Rerror(msg.Tag(), "%s", err)
 	}
 	return true
 
