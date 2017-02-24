@@ -172,7 +172,7 @@ The styx protocol and 9P2000 are identical.
 When doing programming in any domain I am unfamiliar with, I like to
 keep it interactive; some of my most productive work is done at the
 Read-eval-print-loop of a Python or Lisp interpreter.  Although there
-is currently no compiler available for Go, I can use the fast compile
+is currently no interpreter available for Go, I can use the fast compile
 times of the main implementation to setup a satisfactory feedback loop,
 by running `go test` every time a file changes. I have patched Russ Cox's
 `Watch` command to run on Linux, and renamed it to `acmewatch`. This
