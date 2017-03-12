@@ -1,4 +1,4 @@
-baseurl = "https://blog.aqwari.net/"
+baseurl = "https://blog.aqwari.net"
 languageCode = "en-US"
 title = "aqwari.net"
 description = "Here I deposit <a href=\"/bookmarks\">links</a>, opinions, <a href=\"/art\">drawings</a>, and other things of value."
