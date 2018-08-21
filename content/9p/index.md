@@ -105,7 +105,7 @@ While the documentation for 9P is pretty complete, it is helpful to look at
 different implementations to get a clearer view on how it is meant to be used.
 In addition to the [reference
 implementation](https://github.com/9fans/plan9port/tree/master/src/lib9p) (the
-link is for plan9port, which has minimal differences to plan9), there are
+link is for plan9port, which has minimal differences with plan9), there are
 several other implementations with varying approaches:
 
 - libixp, originally written for the wmii window manager, is a 

@@ -1,6 +1,6 @@
 +++
 date = "2015-09-29T12:00:00-05:00"
-title = "Writing a 9P server from scratch: Protocol parsing"
+title = "Writing a 9P server from scratch, pt 2: Protocol parsing"
 tags = ["9P"]
 description = "Decoding the 9P message format"
 +++

@@ -1,6 +1,6 @@
 +++
 date = "2016-08-20T12:00:00-05:00"
-title = "Writing a 9P server from scratch: server plumbing"
+title = "Writing a 9P server from scratch, pt 3: server plumbing"
 tags = ["9P"]
 description = "Walking and talking like a 9P server"
 +++
@@ -54,9 +54,9 @@ There are 3 types of identifiers in the 9P protocol.
   descriptors.  Chosen by the client. **Not unique**; two fids may point
   to the same file.
 - **Qid**: 104-bit identifier for a file, analogous to (but not the same as)
-  an inode in a Unix filesystem. Chosen by the **server**. No two files
-  may have the same Qid, even if they have the same name and one
-  has been deleted.
+  an inode number in a Unix filesystem. Chosen by the **server**. No
+  two files may have the same Qid, even if they have the same name and
+  one has been deleted.
 
 To ensure our server is suitable for public, anonymous use, we should
 pay special attention to the identifiers that are chosen by the client,
@@ -110,24 +110,30 @@ and the two maps are replaced with thread-safe wrappers. The
 embedded Decoder and Encoders read and write 9P messages on
 the underlying connection. Two maps are used to lookup the session
 a file is associated with (more on sessions later) and to lookup in-flight
-requests that may be cancelled via a `Tflush` request.
+requests that may be cancelled via a `Tflush` request. Unique qids are
+retrieved for files on-demand.
 
 The main loop of a connection looks something like this:
 
-	// runs in its own goroutine, one per connection.
 	func (c *conn) serve() {
 		defer c.close()
+	
 		if !c.acceptTversion() {
 			return
 		}
-	Loop:
-		for c.Next() {
-			for _, m := range c.Messages() {
-				if !c.handleMessage(m) {
-					break Loop
-				}
+	
+		for c.Next() && c.Encoder.Err() == nil {
+			if !c.handleMessage(c.Msg()) {
+				break
 			}
 		}
+		if err := c.Encoder.Err(); err != nil {
+			c.srv.logf("write error: %s", err)
+		}
+		if err := c.Decoder.Err(); err != nil {
+			c.srv.logf("read error: %s", err)
+		}
+		c.srv.logf("closed connection from %s", c.remoteAddr())
 	}
 
 Version negotiation must be the first transaction made, and looks
@@ -158,14 +164,10 @@ like this:
 		}
 	}
 
-In plain english,
-
-- The client proposes a version string
-- The server responds with "unknown" until it recognizes it as a
-  9P2000 variant
-- The server forces the client to use 9P2000
-
-Here is the handler for other messages:
+In plain english, the client proposes a version, and the server responds
+with "unknown" until the client proposes a 9P2000 variant, after which the
+server, which has the final say, forces the client to use 9P2000. Here is the
+handler for all other messages:
 
 	func (c *conn) handleMessage(m styxproto.Msg) bool {
 		if _, ok := c.pendingReq[m.Tag()]; ok {
@@ -204,12 +206,13 @@ is:
 		Fid() uint32
 	}
 
-Remember from the [previous][prev] post that our representation
-of 9P messages in the [styxproto][styxproto] package is just a
-slice of bytes with methods for the fields. Using that knowledge, we
-can create interfaces that select common classes of 9P messages.
-In this case, an `fcall` is a 9P message that operates on a file, pointed
-to by a fid. An fcall is special, because it is part of a session.
+Remember from the [previous][prev] post that our representation of 9P
+messages in the [styxproto][styxproto] package is just a slice of bytes
+with methods for the fields, with a 1-1 mapping from a message to a Go
+type. Using that knowledge, we can create interfaces that select common
+classes of 9P messages.  In this case, an `fcall` is a 9P message that
+operates on a file, pointed to by a fid. An fcall is special, because
+it is part of a session.
 
 # 9P Sessions
 
@@ -239,6 +242,30 @@ already established fid; the walk is relative to that file. Other than
 we can always use the ancestry of a fid to determine the session it is
 associated with. In practical terms, this is what the `sessionFid` map
 in the `conn` structure is for.
+
+In the `styx` package, there will be one managing goroutine per session.
+This goroutine is created when the server handles a `Tattach` message.
+
+	func (c *conn) handleTattach(ctx context.Context, m styxproto.Tattach) bool {
+		defer c.Flush()
+		s := newSession(c, m)
+		go func() {
+			c.srv.Handler.Serve9P(s)
+			s.cleanupHandler()
+		}()
+		c.sessionFid[m.Fid()] = s
+		s.IncRef()
+		s.files.Put(m.Fid(), file{name: ".", rwc: nil})
+		c.clearTag(m.Tag())
+		c.Rattach(m.Tag(), c.qid(".", styxproto.QTDIR))
+		return true
+	}
+
+All sessions must have at least one file associated with them. After an
+`attach` transaction, that file is the root directory. Reference counting is
+then used to detect when a session is finished and notify the session
+handler. The `cleanupHandler` method closes all open files on a 
+connection if its handler exits prematurely.
 
 # I/O
 
