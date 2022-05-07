@@ -3,6 +3,7 @@ date = "2020-05-10T06:00:00-05:00"
 title = "Let's build a high performance file system!"
 tags = ["ocaml", "plan9", "9P", "fs", "performance", "programming"]
 description = "In user space! In a high-level language!"
+draft = true
 +++
 
 I enjoyed making a series of [articles](../9p) implementing
