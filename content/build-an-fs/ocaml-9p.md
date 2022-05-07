@@ -3,6 +3,7 @@ date = "2020-05-11T18:00:00Z"
 title = "Let's build a high performance file system! Part 0"
 tags = ["ocaml", "plan9", "9P", "fs", "performance", "programming"]
 description = "Implementing a 9P server (and client) in OCaml"
+draft = true
 +++
 
 In order to serve a file system over 9P, we need an
