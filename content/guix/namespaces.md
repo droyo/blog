@@ -129,8 +129,8 @@ in a file, `my-namespace.scm`, something like this:
 	  (bind (list "/var/" "/dev/" "/proc/"))
 
 	  ;; bind this path to the output of a G-expression
-	  (bind "/etc/hosts" #~(plain-file "hosts" "127.0.0.1 localhost\n"))
-	  (bind "/etc/resolv.conf" #~(local-file "./resolvconf-file"))
+	  (bind "/etc/hosts" #~#$(plain-file "hosts" "127.0.0.1 localhost\n"))
+	  (bind "/etc/resolv.conf" #~#$(local-file "./resolvconf-file"))
 
 	  ;; merge the output of these packages
 	  (bind "/"
