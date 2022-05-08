@@ -16,3 +16,5 @@ draft = true
 * [errors.c](https://github.com/torvalds/linux/blob/master/net/9p/error.c), v9fs's internal table mapping plan9-style string errors to error numbers.
 
 * [Composable Error Handling in OCaml](https://keleshev.com/composable-error-handling-in-ocaml) - survey of error handling techniques in OCaml.
+
+[minix vfs - Minix3](https://www.minix3.org/theses/gerofi-minix-vfs.pdf)

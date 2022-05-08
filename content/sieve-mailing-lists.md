@@ -68,7 +68,7 @@ The regular expression above takes a string such as
 
 and cuts it up into these groups, numbered 1 through 10:
 
-	((netdev).) (.vger) (.kernel) () () () () () (.org)
+	((netdev)) (.vger) (.kernel) () () () () () (.org)
 
 Then the expression
 
