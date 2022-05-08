@@ -6,19 +6,9 @@ description = ""
 draft = true
 +++
 
-I've decided to learn [Ocaml](https://ocaml.org/). This document
-is more of a running list of losses and victories that I keep
-as I learn.
+I've decided to learn [Ocaml](https://ocaml.org/). This document is more of
+a running list of losses and victories that I keep as I learn.
 
-# Disclaimer
-
-There will be some complaints in this document. Many of them are
-unfair. They are coming from a person with little experience with
-the language and its tools. I have also grown a bad habit over
-the years of trying to brute force configuration or tooling
-issues using Google, instead of investing the time to read
-documentation from start to finish. So before you feel outraged,
-remember that I still like this language and want to learn it.
 
 # Things I like
 
@@ -28,18 +18,17 @@ remember that I still like this language and want to learn it.
 
 ## LWT is viral
 
-[LWT](https://ocsigen.org/lwt/) is a library implementing
-cooperative multi-tasking. It is the most common way for
-ocaml packages and programs to provide concurrency. An
-`Lwt.t` type is a promise for work to be done later. You
-"bind" a function to it that will be called when the work
-is done. It is effectively an implementation of [futures and
+[LWT](https://ocsigen.org/lwt/) is a library implementing cooperative
+multi-tasking. It is the most common way for ocaml packages and programs
+to provide concurrency. An `Lwt.t` type is a promise for work to be
+done later. You "bind" a function to it that will be called when the
+work is done. It is effectively an implementation of [futures and
 promises](https://en.wikipedia.org/wiki/Futures_and_promises).
 
-There's nothing wrong with that. What I dislike is that when
-you use Lwt, it permeates your API. Your functions now return
-`Lwt.t` types, and consumers of your API are forced to use and
-understand Lwt. Here is a list of libraries under Lwt version 5.2.0:
+There's nothing wrong with that. What I dislike is that when you use Lwt,
+it permeates your API. Your functions now return `Lwt.t` types, and consumers
+of your API are forced to use and understand Lwt. Here is a list of libraries
+under Lwt version 5.2.0:
 
 - `Lwt`
 - `Lwt_bytes`
@@ -72,35 +61,32 @@ understand Lwt. Here is a list of libraries under Lwt version 5.2.0:
 - `Lwt_timeout`
 - `Lwt_unix`
 
-Most of these make sense and are necessary. However, they
-demonstrate the drawback of bolting event-based programming
-onto the language -- you need replacements or wrappers for
-any function that could potentially block, to give the Lwt
-main thread the opportunity to service other events.
+Most of these make sense and are necessary. However, they demonstrate the
+drawback of bolting event-based programming onto the language -- you need
+replacements or wrappers for any function that could potentially block,
+to give the Lwt main thread the opportunity to service other events.
 
 ## Fragmented or under-documented tooling and libraries
 
-In addition to the standard library provided with OCaml, I found
-three replacements for or extensions of the standard library:
+In addition to the standard library provided with OCaml, I found three
+replacements for or extensions of the standard library:
 
 * [Core](https://opensource.janestreet.com/core/)
 * [Containers](https://c-cube.github.io/ocaml-containers/)
 * [Batteries](http://batteries.forge.ocamlcore.org/)
 
-among them, `Core` appears to be the most popular. I don't want
-to sound ungrateful that these very large undertakings are
-shared and maintained. However, I wish that they had been
-added to the standard library, with minimal dependencies
-between modules. In my experience with other language, building
-a solid understanding of the standard library was a big step in
-becoming productive with the language and being able to
-read code quickly. With the current situation, I have additional
-standard libraries to learn.
+among them, `Core` appears to be the most popular. I don't want to
+sound ungrateful that these very large undertakings are shared and
+maintained. However, I wish that they had been added to the standard library,
+with minimal dependencies between modules. In my experience with other
+language, building a solid understanding of the standard library was a big
+step in becoming productive with the language and being able to read code
+quickly. With the current situation, I have additional standard libraries
+to learn.
 
-It doesn't help that the `Core` library doesn't run on all the platforms
-OCaml can run (namely Windows), so if I want to target Windows I
-have to make sure to avoid `Core` and avoid depending on anything
-that may depend on `Core`.
+It doesn't help that the `Core` library doesn't run on all the platforms OCaml
+can run (namely Windows), so if I want to target Windows I have to make sure
+to avoid `Core` and avoid depending on anything that may depend on `Core`.
 
 # Things that drove me nuts
 

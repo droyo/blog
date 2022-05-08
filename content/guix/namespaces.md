@@ -79,12 +79,15 @@ This is great, and gives users the ability to freely compose different
 versions of packages within their own environment without affecting other
 users, and without root privileges. However, something about seeing so many
 symlinks irks me. I will fully admit that my sense of disgust is irrational
-and I should get over it.  But for my biased sensibilities, this is *ugly*:
+and I should get over it. But here are the series of symlink walks needed
+to run, for example, the `ip` program at `~/.guix-profile/sbin/ip`:
 
-	/home/david/.guix-profile ->
-	  /var/guix/profiles/per-user/david/guix-profile ->
-	    guix-profile-47-link ->
-	      /gnu/store/j9amghbs5nk3gwj27r62gv56q6rh80k2-profile
+	~/.guix-profile
+	-> /var/guix/profiles/per-user/david/guix-profile
+	-> guix-profile-47-link
+	-> /gnu/store/j9amghbs5nk3gwj27r62gv56q6rh80k2-profile
+	-> /gnu/store/j9amghbs5nk3gwj27r62gv56q6rh80k2-profile/sbin/ip
+	-> /gnu/store/35lj2sn5p6wfd8h1j11hb2mcvria3cfl-iproute2-5.15.0/sbin/ip
 
 I accept that symlinks solve a real problem and are very useful. But in
 my opinion, they are a wart, they required invasive changes to most unix
